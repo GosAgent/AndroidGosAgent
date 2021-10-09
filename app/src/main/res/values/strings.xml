@@ -1,4 +1,29 @@
 <resources>
-    <string name="app_name">Gos Agent</string>
+    <string name="app_name">GosAgent</string>
+    <string name="type1">type1</string>
+    <string name="type2">type2</string>
+    <string name="type3">type3</string>
+    <string name="type4">type4</string>
+    <string name="type5">type5</string>
+    <string name="type6">type6</string>
+    <string name="type7">type7</string>
+    <string name="type8">type8</string>
+    <string name="type9">type9</string>
+    <string name="type10">type10</string>
+    <string name="type11">type11</string>
+    <string name="type12">type12</string>
+    <string name="type13">type13</string>
+    <string name="type14">type14</string>
+    <string name="type15">type15</string>
+    <string name="type16">type16</string>
+    <string name="type17">type17</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps2">MapsActivity2</string>
+    <string name="hello_wordl">Hello Wordl</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_info_window_layout">info_window_layout</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_info_window_layoutas">info_window_layoutas</string>
+    <string name="hello_world">Hello World</string>
 </resources>

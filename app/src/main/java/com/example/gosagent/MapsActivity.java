@@ -37,7 +37,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     public void onMapReady(GoogleMap googleMap) {
         LatLng sydney = new LatLng(-34, 151);
 
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        googleMap.addMarker(new MarkerOptions().position(sydney).title("Test"));
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         googleMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) this);

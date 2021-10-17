@@ -12,8 +12,18 @@ public class PageViewModel extends ViewModel {
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
         @Override
         public String apply(Integer input) {
-            return "Hello world";
-        }
+            if (mIndex.getValue() == 1) {
+                return "Организатор торгов:\nКОМИТЕТ ПО УПРАВЛЕНИЮ МУНИЦИПАЛЬНЫМ ИМУЩЕСТВОМ ГОРОДА СТАВРОПОЛЯ\n\n" +
+                        "Номер извещения\\Номер лота:\n141021/0074101/01 \\ Лот 1 \n\n" +
+                        "Местоположение:\nСтавропольский край, Ставрополь г, \n2 Промышленная ул \n\n" +
+                        "Площадь: 2861.0 м² \n\n" +
+                        "Начальная цена: 1 080 000 руб.";
+            }
+            return "Организатор торгов:\nДЕПАРТАМЕНТ ИМУЩЕСТВЕННЫХ ОТНОШЕНИЙ АДМИНИСТРАЦИИ ГОРОДА ОМСКА\n\n" +
+                "Номер извещения\\Номер лота:\n\"141021/0069468/01 \\" + "Лот 1 \n\n" +
+                "Местоположение:\nОмская обл, Омск г, Маршала Жукова ул \n\n" +
+                "Площадь:\n548.1 м² \n\n" +
+                "Начальная цена:\n1 772 400 руб."; }
     });
 
     public void setIndex(int index) {

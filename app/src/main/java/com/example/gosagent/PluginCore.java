@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class PluginCore {
     public static ReadData readData;
     public static int markerType;
+    public static int countPages;
 
     public static int getMarkerType() {
         int icon;

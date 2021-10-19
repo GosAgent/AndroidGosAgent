@@ -25,4 +25,23 @@
     <string name="tab_text_2">Лот 2</string>
     <string name="title_activity_info_window_layoutas">info_window_layoutas</string>
     <string name="title_activity_main2">MainActivity2</string>
+    <string name="text_type1">Аренда, безвозмездное пользование, доверительное управление имуществом, иные договоры, предусматривающие передачу прав владения и пользования в отношении государственного и муниципального имущества</string>
+    <string name="text_type2">\nАренда и продажа земельных участков, заключение договора о комплексном развитии территории\n</string>
+    <string name="text_type3">Строительство</string>
+    <string name="text_type5">Пользование участками недр</string>
+    <string name="text_type6">Государственно-частное партнерство (соглашения о ГЧП/МЧП, концессионные соглашения)</string>
+    <string name="text_type10">Водопользование</string>
+    <string name="text_type8">Продажа государственного (муниципального) имущества и имущества госкомпаний</string>
+    <string name="text_type7">Аренда лесных участков и продажа лесных насаждений</string>
+    <string name="text_type4" />
+    <string name="text_type_4">Охотхозяйственные соглашения</string>
+    <string name="text_type3_1">Строительство</string>
+    <string name="text_type15">Размещение рекламных конструкций</string>
+    <string name="text_type9">Передача прав на единые технологии</string>
+    <string name="text_type13">Реализация имущества должников</string>
+    <string name="text_type11">Рыболовство и добыча водных биоресурсов</string>
+    <string name="text_type14">Создание искусственных земельных участков</string>
+    <string name="text_type12">ЖКХ</string>
+    <string name="text_type16">Продажа объектов электроэнергетики</string>
+    <string name="text_type17">Лицензии на оказание услуг связи</string>
 </resources>

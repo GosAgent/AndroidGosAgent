@@ -17,13 +17,15 @@ public class PageViewModel extends ViewModel {
                         "Номер извещения\\Номер лота:\n141021/0074101/01 \\ Лот 1 \n\n" +
                         "Местоположение:\nСтавропольский край, Ставрополь г, \n2 Промышленная ул \n\n" +
                         "Площадь: 2861.0 м² \n\n" +
-                        "Начальная цена: 1 080 000 руб.";
+                        "Начальная цена: 1 080 000 руб.\n\n" +
+                        "Ссылка: https://torgi.gov.ru/restricted/notification/notificationView.html?notificationId=55483028&lotId=55483033&prevPageN=7";
             }
             return "Организатор торгов:\nДЕПАРТАМЕНТ ИМУЩЕСТВЕННЫХ ОТНОШЕНИЙ АДМИНИСТРАЦИИ ГОРОДА ОМСКА\n\n" +
                 "Номер извещения\\Номер лота:\n\"141021/0069468/01 \\" + "Лот 1 \n\n" +
                 "Местоположение:\nОмская обл, Омск г, Маршала Жукова ул \n\n" +
                 "Площадь:\n548.1 м² \n\n" +
-                "Начальная цена:\n1 772 400 руб."; }
+                "Начальная цена:\n1 772 400 руб.\n\n" +
+                "Ссылка: https://torgi.gov.ru/restricted/notification/notificationView.html?notificationId=55483028&lotId=55483031&prevPageN=0"; }
     });
 
     public void setIndex(int index) {

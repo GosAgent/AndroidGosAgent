@@ -25,7 +25,7 @@
     <string name="tab_text_2">Лот 2</string>
     <string name="title_activity_info_window_layoutas">info_window_layoutas</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="text_type1">Аренда, безвозмездное пользование, доверительное управление имуществом, иные договоры, предусматривающие передачу прав владения и пользования в отношении государственного и муниципального имущества</string>
+    <string name="text_type1">Аренда, безвозмездное пользование и иные договоры в отношении государственного и муниципального имущества</string>
     <string name="text_type2">\nАренда и продажа земельных участков, заключение договора о комплексном развитии территории\n</string>
     <string name="text_type3">Строительство</string>
     <string name="text_type5">Пользование участками недр</string>

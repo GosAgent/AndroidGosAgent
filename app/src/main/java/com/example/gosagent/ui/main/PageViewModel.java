@@ -1,10 +1,15 @@
 package com.example.gosagent.ui.main;
 
+import android.text.Html;
+import android.widget.TextView;
+
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+
+import com.example.gosagent.R;
 
 public class PageViewModel extends ViewModel {
 
@@ -13,6 +18,8 @@ public class PageViewModel extends ViewModel {
         @Override
         public String apply(Integer input) {
             if (mIndex.getValue() == 1) {
+                //TextView t2 = (TextView) findViewById(R.id.section_label);
+
                 return "Организатор торгов:\nКОМИТЕТ ПО УПРАВЛЕНИЮ МУНИЦИПАЛЬНЫМ ИМУЩЕСТВОМ ГОРОДА СТАВРОПОЛЯ\n\n" +
                         "Номер извещения\\Номер лота:\n141021/0074101/01 \\ Лот 1 \n\n" +
                         "Местоположение:\nСтавропольский край, Ставрополь г, \n2 Промышленная ул \n\n" +

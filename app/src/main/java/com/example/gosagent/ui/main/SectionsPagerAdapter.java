@@ -1,3 +1,4 @@
+/*
 package com.example.gosagent.ui.main;
 
 import android.content.Context;
@@ -11,10 +12,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.gosagent.PluginCore;
 import com.example.gosagent.R;
 
+*/
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
- */
+ *//*
+
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
@@ -43,4 +46,4 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return TAB_TITLES.length;
     }
-}
+}*/

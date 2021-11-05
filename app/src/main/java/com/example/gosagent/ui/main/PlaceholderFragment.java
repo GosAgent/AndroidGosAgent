@@ -1,3 +1,4 @@
+/*
 package com.example.gosagent.ui.main;
 
 import android.os.Bundle;
@@ -5,6 +6,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,11 +15,16 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.gosagent.R;
 import com.example.gosagent.databinding.FragmentInfoWindowLayoutBinding;
 
+import java.util.ArrayList;
+
+*/
 /**
  * A placeholder fragment containing a simple view.
- */
+ *//*
+
 public class PlaceholderFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -50,6 +57,7 @@ public class PlaceholderFragment extends Fragment {
             Bundle savedInstanceState) {
 
         binding = FragmentInfoWindowLayoutBinding.inflate(inflater, container, false);
+
         View root = binding.getRoot();
 
         final TextView textView = binding.sectionLabel;
@@ -67,4 +75,4 @@ public class PlaceholderFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-}
+}*/

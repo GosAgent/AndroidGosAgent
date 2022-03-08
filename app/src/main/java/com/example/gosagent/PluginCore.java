@@ -66,7 +66,6 @@ public class PluginCore {
         dataList.clear();
         allLotData.clear();
         readData = new ReadData();
-        markerType = 0;
     }
 
 }

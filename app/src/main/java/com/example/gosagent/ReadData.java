@@ -1,41 +1,199 @@
 package com.example.gosagent;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import android.os.StrictMode;
+import android.util.Log;
 
-public class ReadData extends Configs{
-    Connection dbConnection;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-    public Connection getDbConnection() throws ClassNotFoundException, SQLException {
-        String connectionString = "jdbc:mysql://" + dbHost +
-                ":" + dbPort + "/" + dbName;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
-        Class.forName("com.mysql.jdbc.Driver");
+public class ReadData{
 
-        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
+    public HttpURLConnection connection;
+    Thread DataReading;
+    String answer;
+    // да, да, потом сделаю декомпозицию кода
+    // бе
+    public void Read() throws InterruptedException {
 
-        return dbConnection;
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+
+        DataReading = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.d("GosAgent", "start... ");
+                    String url = Configs.dbHost + "?action=select&table=" + Configs.tableName + PluginCore.markerType;
+
+                    connection = (HttpURLConnection) new URL(url).openConnection();
+                    connection.setReadTimeout(10000);
+                    connection.setConnectTimeout(15000);
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+                    connection.setDoInput(true);
+                    connection.connect();
+
+                } catch (Exception e) {
+                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
+                }
+
+                Log.d("GosAgent", "+ FoneService успешное подключение");
+
+                try {
+                    InputStream is = connection.getInputStream();
+                    BufferedReader br = new BufferedReader(
+                            new InputStreamReader(is, StandardCharsets.UTF_8));
+                    StringBuilder sb = new StringBuilder();
+                    String bfr_st;
+                    while ((bfr_st = br.readLine()) != null) {
+                        sb.append(bfr_st);
+                    }
+
+                    Log.d("GosAgent", "+ FoneService - полный ответ сервера:\n"
+                            + sb);
+
+                    answer = sb.toString();
+                    answer = answer.substring(0, answer.indexOf("]") + 1);
+
+                    is.close();
+                    br.close();
+
+                } catch (Exception e) {
+                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
+                } finally {
+                    connection.disconnect();
+                    Log.d("GosAgent",
+                            "+ FoneService --------------- ЗАКРОЕМ СОЕДИНЕНИЕ");
+                }
+
+                try {
+                    JSONArray ja = new JSONArray(answer);
+                    JSONObject jo;
+
+                    int i = 0;
+
+                    while (i < ja.length()) {
+                        jo = ja.getJSONObject(i);
+
+                        PluginCore.addLotData(jo.getInt("id"), jo.getDouble("coordinatesX"), jo.getDouble("coordinatesY"));
+
+                        i++;
+
+                    }
+                } catch (Exception e) {
+                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
+                }
+            }
+        });
+
+        DataReading.run();
+
     }
 
-    public ResultSet getData(int ID) {
-        ResultSet resSet = null;
+    public void ReadAllLot(String x, String y) throws InterruptedException {
 
-        String select = "SELECT * FROM " + Const.DB_TABLE +
-                " WHERE " + Const.DB_ID + "=?";
-        try {
-            PreparedStatement prStatement = getDbConnection().prepareStatement(select);
-            prStatement.setInt(1, ID);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 
-            resSet = prStatement.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        StrictMode.setThreadPolicy(policy);
 
-        return resSet;
+        DataReading = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.d("GosAgent", "start... ");
+                    String url = Configs.dbHost + "?action=getData&table=" + Configs.tableName + PluginCore.markerType +
+                            "&X=" + x + "&Y=" + y;
+
+                    connection = (HttpURLConnection) new URL(url).openConnection();
+                    connection.setReadTimeout(10000);
+                    connection.setConnectTimeout(15000);
+                    connection.setRequestMethod("POST");
+                    connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+                    connection.setDoInput(true);
+                    connection.connect();
+
+                } catch (Exception e) {
+                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
+                }
+
+                Log.d("GosAgent", "+ FoneService успешное подключение");
+
+                try {
+                    InputStream is = connection.getInputStream();
+                    BufferedReader br = new BufferedReader(
+                            new InputStreamReader(is, StandardCharsets.UTF_8));
+                    StringBuilder sb = new StringBuilder();
+                    String bfr_st;
+                    while ((bfr_st = br.readLine()) != null) {
+                        sb.append(bfr_st);
+                    }
+
+                    Log.d("GosAgent", "+ FoneService - полный ответ сервера:\n"
+                            + sb);
+
+                    answer = sb.toString();
+                    answer = answer.substring(0, answer.indexOf("]") + 1);
+
+                    is.close();
+                    br.close();
+
+                } catch (Exception e) {
+                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
+                } finally {
+                    connection.disconnect();
+                    Log.d("GosAgent",
+                            "+ FoneService --------------- ЗАКРОЕМ СОЕДИНЕНИЕ");
+                }
+
+                try {
+                    JSONArray ja = new JSONArray(answer);
+                    JSONObject jo;
+
+                    int i = 0;
+
+                    while (i < ja.length()) {
+                        jo = ja.getJSONObject(i);
+
+                        List<String> results = new ArrayList<>();
+                        for (String tag : AllLotData.getTeg()) {
+                            String result = null;
+
+                            try {
+                                result = jo.getString(tag);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            if (result != null && result.length() > 1)
+                                results.add(result);
+                        }
+
+                        Log.d("GosAgent","success parse data");
+
+                        AllLotData dataTag = new AllLotData(results);
+                        PluginCore.allLotData.add(dataTag);
+
+                        i++;
+
+                    }
+                } catch (Exception e) {
+                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
+                }
+            }
+        });
+
+        DataReading.run();
     }
+
 }

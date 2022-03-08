@@ -4,21 +4,22 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PluginCore {
-    public static ReadData readData;
-    public static int markerType;
-    public static int countPages;
+    // переименовать на что-то более адекватное
+    public static ReadData readData = new ReadData();
+    public static List<LotData> dataList = new ArrayList<>();
+    public static int markerType = 0;
+    public static List<AllLotData> allLotData = new ArrayList<>();
+
 
     public static int getMarkerType() {
         int icon;
@@ -53,6 +54,19 @@ public class PluginCore {
         Canvas canvas = new Canvas(bitmap);
         vectorDrawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    public static void addLotData(int id, double coordinatesX, double coordinatesY){
+        LotData data = new LotData(id, coordinatesX, coordinatesY);
+
+        dataList.add(data);
+    }
+
+    public static void init() {
+        dataList.clear();
+        allLotData.clear();
+        readData = new ReadData();
+        markerType = 0;
     }
 
 }

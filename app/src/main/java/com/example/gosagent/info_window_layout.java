@@ -23,7 +23,7 @@ public class info_window_layout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_info_window_layout);
 
-        setupAdapterInfoWind(); //
+        setupAdapterInfoWind();
 
         linearLayout = findViewById(R.id.layoutOnAction);
 
@@ -31,35 +31,35 @@ public class info_window_layout extends AppCompatActivity {
         viewPager2.setAdapter(adapterInfoWindow); ////
 
         setupIndicator();
-
     }
 
     private void setupAdapterInfoWind() {
         List<InformationPages> elements = new ArrayList<>();
 
-        InformationPages item = new InformationPages();
-        // item.setImage();  // тут же можно было бы туда картиночку добавить
-        item.setTitle("ЛОТ 1");   /// mText
-        item.setDescription(
-        "Организатор торгов:\nКОМИТЕТ ПО УПРАВЛЕНИЮ МУНИЦИПАЛЬНЫМ ИМУЩЕСТВОМ ГОРОДА СТАВРОПОЛЯ\n\n" +
-                "Номер извещения\\" +
-                "Номер лота:\n141021/0074101/01 \\ " +
-                "Лот 1 \n\n" +
-                "Местоположение:\n" +
-                "Ставропольский край, Ставрополь г, \n2 Промышленная ул \n\n" +
-                "Площадь: 2861.0 м² \n\n" +
-                "Начальная цена: 1 080 000 руб.\n\n");
-        item.setLink("Ссылка: https://torgi.gov.ru/restricted/notification/notificationView.html?notificationId=55483028&lotId=55483033&prevPageN=7");
+        int lotName = 1;
 
-        InformationPages item1 = new InformationPages();
-        // item.setImage();  // тут же можно было бы туда картиночку добавить
-        item1.setTitle("ЛОТ 2");   /// mText
-        item1.setDescription("много-много текста!!");   /// mText
+        for (AllLotData lot : PluginCore.allLotData) {
+            InformationPages item = new InformationPages();
+            item.setTitle("ЛОТ " + lotName);
 
-        elements.add(item);
-        elements.add(item1);
+            int limit_information = 0;
+            String description = "";
+            for (String information : lot.lotConfigs) {
+                if (limit_information != lot.lotConfigs.size() - 1) {
+                    description += information + "\n\n";
+                }
+                limit_information++;
+            }
+
+            item.setDescription(description + "\n");
+            item.setLink(lot.lotConfigs.get(lot.lotConfigs.size() - 1));
+
+            lotName++;
+
+            elements.add(item);
+        }
+
         adapterInfoWindow = new AdapterInfoWindow(elements);
-
     }
 
     private void setupIndicator() {
@@ -75,7 +75,7 @@ public class info_window_layout extends AppCompatActivity {
             linearLayout.addView(indicators[i]);
         }
     }
-
+    // если не планируется использовать закоментированный код, то лучше убрать
     @Override
     protected void onStart() {
         super.onStart();

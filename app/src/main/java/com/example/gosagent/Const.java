@@ -1,13 +1,13 @@
 package com.example.gosagent;
 
 public class Const {
-    public static final String DB_TABLE = "1ype";
+    public static String DB_TABLE = "tablestype";
 
-    public static final String DB_ID = "id";
-    public static final String DB_ORG = "organisator";
-    public static final String DB_NUM = "number";
-    public static final String DB_DSCPPTN = "description";
-    public static final String DB_LCATN = "location";
-    public static final String DB_INIT_PRICE = "initialPrice";
-    public static final String DB_MOUNTH_PRICE = "monthlyPayment";
+    public static String DB_ID = "id";
+    public static String DB_ORG = "organisator";
+    public static String DB_NUM = "number";
+    public static String DB_DSCPPTN = "description";
+    public static String DB_LCATN = "location";
+    public static String DB_INIT_PRICE = "initialPrice";
+    public static String DB_MOUNTH_PRICE = "monthlyPayment";
 }

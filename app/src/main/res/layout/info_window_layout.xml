@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -29,46 +29,197 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:id="@+id/textTitle"
-            android:paddingTop="20dp"
-            android:textStyle="bold"
-            />
+            android:layout_height="wrap_content">
 
-        <TextView
+            <RelativeLayout
+                android:id="@+id/icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageType"
+                    android:layout_width="55sp"
+                    android:layout_height="55sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="15dp"
+                    android:paddingTop="10dp"
+                    android:background="@drawable/ic_airport"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_centerInParent="true"
+                    tools:ignore="RtlSymmetry" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/numberLot"
+                android:layout_toEndOf="@+id/icon">
+
+                <TextView
+                    android:id="@+id/textNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/rounded_corner_view"
+                    android:paddingStart="15dp"
+                    android:paddingTop="10dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textStyle="bold"
+                    tools:ignore="RtlSymmetry" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <androidx.fragment.app.FragmentContainerView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:id="@+id/textDescription"
-            android:layout_marginTop="50dp"
-            android:isScrollContainer="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+            android:layout_height="2dp"
+            android:layout_marginTop="13dp"
+            android:background="@color/black">
 
-        <TextView
-            android:id="@+id/textLink"
+        </androidx.fragment.app.FragmentContainerView>
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:autoLink="web"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
-
-        <!-- Мы же должны будем как-то лоты выбирать, ДА? ну короче вдруг надо -->
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/search_button"
-            android:layout_width="117dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:text="choose"
-            android:layout_marginStart="250dp"
-            android:layout_marginVertical="40dp"
-            android:layout_marginEnd="20dp"
-            app:cornerRadius="10dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/square_rounded">
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/square_rounded">
+
+
+            <TextView
+                android:id="@+id/default_activity_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
+                android:text="@string/Adress"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_toEndOf="@+id/default_activity_button"
+                android:isScrollContainer="true"
+                android:paddingVertical="5dp"
+                android:paddingStart="15dp"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                tools:ignore="RtlSymmetry" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/square_rounded">
+
+
+            <TextView
+                android:id="@+id/default_activity_button12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
+                android:text="@string/price"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textSize="16sp" />
+
+            <!-- @+id/цена -->
+            <TextView
+                android:id="@+id/textPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_toEndOf="@+id/default_activity_button12"
+                android:gravity="center"
+                android:isScrollContainer="true"
+                android:paddingVertical="5dp"
+                android:paddingStart="15dp"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textSize="14sp"
+                tools:ignore="RtlSymmetry" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="2dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/square_rounded">
+
+
+            <TextView
+                android:id="@+id/textLink"
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/common_google_signin_btn_text_light_disabled"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:gravity="center"
+                app:cornerRadius="5dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <!--На счет добавления карты нужно подумать, пока не вижу необходимости -->
+            <!--        <com.google.android.gms.maps.MapView-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="200dp"-->
+            <!--            android:layout_marginTop="10dp"-->
+            <!--            android:layout_marginStart="10dp"-->
+            <!--            android:layout_marginEnd="10dp"-->
+            <!--            android:apiKey="api key"-->
+            <!--            />-->
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/search_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:text="@string/select"
+                app:cornerRadius="10dp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
+
 </ScrollView>

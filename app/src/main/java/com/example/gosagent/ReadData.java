@@ -20,180 +20,170 @@ public class ReadData{
 
     public HttpURLConnection connection;
     Thread DataReading;
-    String answer;
-    // да, да, потом сделаю декомпозицию кода
-    // бе
-    public void Read() throws InterruptedException {
+    String answerDB;
 
+    public void GetMarkersData() throws InterruptedException {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
         StrictMode.setThreadPolicy(policy);
 
         DataReading = new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Log.d("GosAgent", "start... ");
-                    String url = Configs.dbHost + "?action=select&table=" + Configs.tableName + PluginCore.markerType;
+                String typeConnection = ConfigsForDB.dbHost + "?action=select&table=" + ConfigsForDB.tableName + PluginCore.MarkerType;
+                if (!CanGetData(typeConnection))
+                    return;
 
-                    connection = (HttpURLConnection) new URL(url).openConnection();
-                    connection.setReadTimeout(10000);
-                    connection.setConnectTimeout(15000);
-                    connection.setRequestMethod("POST");
-                    connection.setRequestProperty("User-Agent", "Mozilla/5.0");
-                    connection.setDoInput(true);
-                    connection.connect();
-
-                } catch (Exception e) {
-                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
-                }
-
-                Log.d("GosAgent", "+ FoneService успешное подключение");
-
-                try {
-                    InputStream is = connection.getInputStream();
-                    BufferedReader br = new BufferedReader(
-                            new InputStreamReader(is, StandardCharsets.UTF_8));
-                    StringBuilder sb = new StringBuilder();
-                    String bfr_st;
-                    while ((bfr_st = br.readLine()) != null) {
-                        sb.append(bfr_st);
-                    }
-
-                    Log.d("GosAgent", "+ FoneService - полный ответ сервера:\n"
-                            + sb);
-
-                    answer = sb.toString();
-                    answer = answer.substring(0, answer.indexOf("]") + 1);
-
-                    is.close();
-                    br.close();
-
-                } catch (Exception e) {
-                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
-                } finally {
-                    connection.disconnect();
-                    Log.d("GosAgent",
-                            "+ FoneService --------------- ЗАКРОЕМ СОЕДИНЕНИЕ");
-                }
-
-                try {
-                    JSONArray ja = new JSONArray(answer);
-                    JSONObject jo;
-
-                    int i = 0;
-
-                    while (i < ja.length()) {
-                        jo = ja.getJSONObject(i);
-
-                        PluginCore.addLotData(jo.getInt("id"), jo.getDouble("coordinatesX"), jo.getDouble("coordinatesY"));
-
-                        i++;
-
-                    }
-                } catch (Exception e) {
-                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
-                }
-            }
-        });
-
-        DataReading.run();
-
-    }
-
-    public void ReadAllLot(String x, String y) throws InterruptedException {
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-
-        DataReading = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Log.d("GosAgent", "start... ");
-                    String url = Configs.dbHost + "?action=getData&table=" + Configs.tableName + PluginCore.markerType +
-                            "&X=" + x + "&Y=" + y;
-
-                    connection = (HttpURLConnection) new URL(url).openConnection();
-                    connection.setReadTimeout(10000);
-                    connection.setConnectTimeout(15000);
-                    connection.setRequestMethod("POST");
-                    connection.setRequestProperty("User-Agent", "Mozilla/5.0");
-                    connection.setDoInput(true);
-                    connection.connect();
-
-                } catch (Exception e) {
-                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
-                }
-
-                Log.d("GosAgent", "+ FoneService успешное подключение");
-
-                try {
-                    InputStream is = connection.getInputStream();
-                    BufferedReader br = new BufferedReader(
-                            new InputStreamReader(is, StandardCharsets.UTF_8));
-                    StringBuilder sb = new StringBuilder();
-                    String bfr_st;
-                    while ((bfr_st = br.readLine()) != null) {
-                        sb.append(bfr_st);
-                    }
-
-                    Log.d("GosAgent", "+ FoneService - полный ответ сервера:\n"
-                            + sb);
-
-                    answer = sb.toString();
-                    answer = answer.substring(0, answer.indexOf("]") + 1);
-
-                    is.close();
-                    br.close();
-
-                } catch (Exception e) {
-                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
-                } finally {
-                    connection.disconnect();
-                    Log.d("GosAgent",
-                            "+ FoneService --------------- ЗАКРОЕМ СОЕДИНЕНИЕ");
-                }
-
-                try {
-                    JSONArray ja = new JSONArray(answer);
-                    JSONObject jo;
-
-                    int i = 0;
-
-                    while (i < ja.length()) {
-                        jo = ja.getJSONObject(i);
-
-                        List<String> results = new ArrayList<>();
-                        for (String tag : AllLotData.getTeg()) {
-                            String result = null;
-
-                            try {
-                                result = jo.getString(tag);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                            if (result != null && result.length() > 1)
-                                results.add(result);
-                        }
-
-                        Log.d("GosAgent","success parse data");
-
-                        AllLotData dataTag = new AllLotData(results);
-                        PluginCore.allLotData.add(dataTag);
-
-                        i++;
-
-                    }
-                } catch (Exception e) {
-                    Log.d("GosAgent", "+ FoneService ошибка: " + e.getMessage());
-                }
+                ParseMarkersData();
             }
         });
 
         DataReading.run();
     }
 
+    public void GetLotData(String x, String y) throws InterruptedException {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        DataReading = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String typeConnection = ConfigsForDB.dbHost + "?action=getData&table=" + PluginCore.getTableName() +
+                        "&X=" + x + "&Y=" + y;
+                if (!CanGetData(typeConnection))
+                    return;
+
+                ParseLotInformation();
+            }
+        });
+
+        DataReading.run();
+    }
+
+    private boolean CanGetData(String typeConnection) {
+        if (!SetConnection(typeConnection))
+            return false;
+
+        return GetServerAnswer();
+    }
+
+    private boolean SetConnection(String typeConnection) {
+        try {
+            Log.d("GosAgent", "start connection");
+
+            connection = (HttpURLConnection) new URL(typeConnection).openConnection();
+            connection.setReadTimeout(10000);
+            connection.setConnectTimeout(15000);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            connection.setDoInput(true);
+
+            connection.connect();
+
+            Log.d("GosAgent", "successful connection");
+        } catch (Exception e) {
+            Log.d("GosAgent", "error connection: " + e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    private boolean GetServerAnswer() {
+        try {
+            InputStream inputStream = connection.getInputStream();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+            StringBuilder answerDB = new StringBuilder();
+
+            String getLotInformation = bufferedReader.readLine();
+
+            while (getLotInformation != null) {
+                answerDB.append(getLotInformation);
+                getLotInformation = bufferedReader.readLine();
+            }
+
+            Log.d("GosAgent", "Successful get information");
+
+            this.answerDB = answerDB.toString();
+            this.answerDB = this.answerDB.substring(0, this.answerDB.indexOf("]") + 1);
+
+            inputStream.close();
+            bufferedReader.close();
+
+        } catch (Exception e) {
+            Log.d("GosAgent", "error get information " + e.getMessage());
+            return false;
+        } finally {
+            connection.disconnect();
+            Log.d("GosAgent", "connection closed");
+        }
+        return true;
+    }
+
+    private void ParseMarkersData() {
+        try {
+            JSONArray JSON_All_Data = new JSONArray(answerDB);
+            JSONObject JSON_data;
+
+            int attributeNumber = 0;
+
+            while (attributeNumber < JSON_All_Data.length()) {
+                JSON_data = JSON_All_Data.getJSONObject(attributeNumber);
+                PluginCore.addLotData(JSON_data.getInt("id"), JSON_data.getDouble("coordinatesX"),
+                        JSON_data.getDouble("coordinatesY"));
+                attributeNumber++;
+            }
+        } catch (Exception e) {
+            Log.d("GosAgent", "fatal error " + e.getMessage());
+        }
+    }
+
+    private void ParseLotInformation() {
+        try {
+            JSONArray JSON_All_Data = new JSONArray(answerDB);
+            JSONObject JSON_data;
+
+            int attributeNumber = 0;
+
+            while (attributeNumber < JSON_All_Data.length()) {
+                JSON_data = JSON_All_Data.getJSONObject(attributeNumber);
+
+                PluginCore.LotInformationData.add(ParseAttributeInformation(JSON_data));
+
+                Log.d("GosAgent","success parse information lot");
+
+                attributeNumber++;
+            }
+        } catch (Exception errorMessage) {
+            Log.d("GosAgent", "fatal error " + errorMessage.getMessage());
+        }
+    }
+
+    private LotInformationsData ParseAttributeInformation(JSONObject JSON_data) {
+        LotInformationsData allAttributeInformation = new LotInformationsData();
+        List<String> description = new ArrayList<>();
+
+        for (String tag : LotInformationsData.getTeg()) {
+            String attributeInformation = null;
+            try {
+                attributeInformation = JSON_data.getString(tag);
+
+                if (attributeInformation == null || attributeInformation.length() <= 1)
+                    continue;
+
+                switch (tag) {
+                    case "number":          allAttributeInformation.numberLot = attributeInformation; break;
+                    case "link":            allAttributeInformation.linkLot = attributeInformation; break;
+                    case "location":        allAttributeInformation.locationLot = attributeInformation; break;
+                    case "monthly_payment": allAttributeInformation.monthlyPaymentLot = attributeInformation; break;
+                    case "initial_price":   allAttributeInformation.initialPriceLot = attributeInformation; break;
+                    default:                description.add(attributeInformation); break;
+                }
+
+            } catch (JSONException errorMessage) {
+                errorMessage.printStackTrace();
+            }
+        }
+
+        allAttributeInformation.lotConfigs.addAll(description);
+        return allAttributeInformation;
+    }
 }

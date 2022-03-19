@@ -28,7 +28,7 @@ public class info_window_layout extends AppCompatActivity {
         linearLayout = findViewById(R.id.layoutOnAction);
 
         ViewPager2 viewPager2 = findViewById(R.id.viewOnAction);
-        viewPager2.setAdapter(adapterInfoWindow); ////
+        viewPager2.setAdapter(adapterInfoWindow);
 
         setupIndicator();
     }
@@ -36,25 +36,21 @@ public class info_window_layout extends AppCompatActivity {
     private void setupAdapterInfoWind() {
         List<InformationPages> elements = new ArrayList<>();
 
-        int lotName = 1;
-
-        for (AllLotData lot : PluginCore.allLotData) {
+        for (LotInformationsData lot : PluginCore.LotInformationData) {
             InformationPages item = new InformationPages();
-            item.setTitle("ЛОТ " + lotName);
 
-            int limit_information = 0;
-            String description = "";
+            item.setNameOfLot(lot.numberLot);
+            item.setImage(PluginCore.getIcon(this));
+            item.setAddresses(lot.locationLot);
+            item.setPrice(lot.initialPriceLot);
+            item.setLink(lot.linkLot);
+
+            StringBuilder description = new StringBuilder();
             for (String information : lot.lotConfigs) {
-                if (limit_information != lot.lotConfigs.size() - 1) {
-                    description += information + "\n\n";
-                }
-                limit_information++;
+                description.append(information).append("\n\n");
             }
 
-            item.setDescription(description + "\n");
-            item.setLink(lot.lotConfigs.get(lot.lotConfigs.size() - 1));
-
-            lotName++;
+            item.setDescription(description.toString().trim());
 
             elements.add(item);
         }
@@ -69,47 +65,23 @@ public class info_window_layout extends AppCompatActivity {
 
         for (int i=0; i < indicators.length; i++) {
             indicators[i] = new ImageView(getApplicationContext());
-            //indicators[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(),
-            //        R.drawable.ic_launcher_background));
             indicators[i].setLayoutParams(layoutParams);
             linearLayout.addView(indicators[i]);
         }
     }
-    // если не планируется использовать закоментированный код, то лучше убрать
+    // как-то подозрительно
     @Override
-    protected void onStart() {
-        super.onStart();
-        //System.out.print(new Object() {}.getClass().getEnclosingMethod().getName());
-        //data.getData(); // типо тут мы получиаем данные
-    }
+    protected void onStart() { super.onStart(); }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        //System.out.print(new Object() {}.getClass().getEnclosingMethod().getName());
-        //data.setData(); // типо тут мы получиаем данные
-    }
-
-
-
-    /////  не обяз-но
+    protected void onStop() { super.onStop(); }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //System.out.print(new Object() {}.getClass().getEnclosingMethod().getName());
-    }
+    protected void onResume() { super.onResume(); }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        //System.out.print(new Object() {}.getClass().getEnclosingMethod().getName());
-        //
-    }
+    protected void onPause() { super.onPause(); }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //System.out.print(new Object() {}.getClass().getEnclosingMethod().getName());
-    }
+    protected void onDestroy() { super.onDestroy(); }
 }

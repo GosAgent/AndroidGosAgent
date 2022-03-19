@@ -37,8 +37,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         // эмитируем многопоточность, после добовления экрана загрузики - вынесим в отдельным поток
         try {
-            PluginCore.readData.Read();
-            PluginCore.readData.DataReading.join();
+            PluginCore.DB.GetMarkersData();
+            PluginCore.DB.DataReading.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -48,7 +48,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
         googleMap.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) this);
 
-        for (LotData lot : PluginCore.dataList) {
+        for (MarkerData lot : PluginCore.Marker) {
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(new LatLng(lot.coordinatesX, lot.coordinatesY));
             markerOptions.icon(PluginCore.bitmapDescriptorFromVector(this));
@@ -63,13 +63,13 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        PluginCore.allLotData.clear();
+        PluginCore.LotInformationData.clear();
 
         String[] coordinates = marker.getTag().toString().split(" ");
         // эмитируем многопоточность, после добовления экрана загрузики - вынесим в отдельным поток
         try {
-            PluginCore.readData.ReadAllLot(coordinates[0], coordinates[1]);
-            PluginCore.readData.DataReading.join();
+            PluginCore.DB.GetLotData(coordinates[0], coordinates[1]);
+            PluginCore.DB.DataReading.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

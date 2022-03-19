@@ -1,8 +1,8 @@
 package com.example.gosagent.ui.main;
 
-// layout
-// name off classes
-// search
+import android.annotation.SuppressLint;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.gosagent.R;
 
 import java.util.List;
 
 public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.PageHolder>{
 
-    private List<InformationPages> informationOnPageList;
+    private final List<InformationPages> informationOnPageList;
 
     public AdapterInfoWindow(List<InformationPages> informationOnPageList) {
         this.informationOnPageList = informationOnPageList;
@@ -42,26 +41,37 @@ public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.Pa
         return informationOnPageList.size();
     }
 
-    class PageHolder extends RecyclerView.ViewHolder {
+    static class PageHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageView; /// ну это если мы картинку добавили бы какую-нибудь
-        private TextView textTitle;
-        private TextView textDescription;
-        private TextView textLink;
+        private final ImageView imageView;
+        private final TextView textNumber;
+        private final TextView textDescription;
+        private final TextView link;
+        private final TextView textAddresses;
+        private final TextView textPrice;
 
+        @SuppressLint("CutPasteId")
         PageHolder(@NonNull View itemView) {
             super(itemView);
-            //imageView = itemView.findViewById(R.id.image);
-            textTitle = itemView.findViewById(R.id.textTitle);  // add
-            textDescription = itemView.findViewById(R.id.textDescription);  // add
-            textLink = itemView.findViewById(R.id.textLink);
-
+            link = itemView.findViewById(R.id.textLink);
+            imageView = itemView.findViewById(R.id.imageType);
+            textNumber = itemView.findViewById(R.id.textNumber);
+            textDescription = itemView.findViewById(R.id.textDescription);
+            textAddresses = itemView.findViewById(R.id.textAdress);
+            textPrice = itemView.findViewById(R.id.textPrice);
         }
 
         void setOnPageInformation(InformationPages information) {
-            textTitle.setText(information.getTitle());
+            imageView.setBackground(information.getImage());
+            textNumber.setText(information.getNameOfLot());
             textDescription.setText(information.getDescription());
-            textLink.setText(information.getLink());
+            textAddresses.setText(information.getAddresses());
+            textPrice.setText(information.getPrice());
+
+            String linkText = "<a href=\"" + information.getLink() + "\">Подробнее</a>";
+            link.setText(Html.fromHtml(linkText, null, null));
+            link.setPaintFlags(0);
+            link.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 }

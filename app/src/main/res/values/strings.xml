@@ -45,4 +45,8 @@
     <string name="text_type16">Продажа объектов электроэнергетики</string>
     <string name="text_type17">Лицензии на оказание услуг связи</string>
     <string name="next">Next</string>
+    <string name="Adress">Адрес:</string>
+    <string name="price">Цена:</string>
+    <string name="more">подробнее</string>
+    <string name="select">выбрать</string>
 </resources>

@@ -1,25 +1,21 @@
 package com.example.gosagent.ui.main;
 
-// Look in DB, what colons from Db.
-
-import java.util.ArrayList;
+import android.graphics.drawable.Drawable;
 
 public class InformationPages {
-    // Class of objects (information of lot). Take from DB.
-    private int image;
-    private String title;
-    private String nameOfLot; /// check this from db
+    private Drawable imageLot;
+    private String nameOfLot;
     private String description;
-    private String link;
-    private ArrayList<Double> coordinates;
-    private ArrayList<Double> otherInformation;
+    private String linkOnLot;
+    private String priceLot;
+    private String addressesLot;
 
-    public int getImage() {
-        return image;
+    public Drawable getImage() {
+        return imageLot;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImage(Drawable image) {
+        this.imageLot = image;
     }
 
     public String getNameOfLot() {
@@ -30,36 +26,26 @@ public class InformationPages {
         this.nameOfLot = nameOfLot;
     }
 
+    public String getAddresses() { return addressesLot; }
+
+    public void setAddresses(String addresses) {
+        this.addressesLot = addresses;
+    }
+
+    public String getPrice() {
+        return priceLot;
+    }
+
+    public void setPrice(String price) {
+        this.priceLot = price;
+    }
+
     public String getLink() {
-        return link;
+        return linkOnLot;
     }
 
     public void setLink(String link) {
-        this.link = link;
-    }
-
-    public ArrayList<Double> getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(ArrayList<Double> coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public ArrayList<Double> getOtherInformation() {
-        return otherInformation;
-    }
-
-    public void setOtherInformation(ArrayList<Double> otherInformation) {
-        this.otherInformation = otherInformation;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        this.linkOnLot = link;
     }
 
     public String getDescription() {

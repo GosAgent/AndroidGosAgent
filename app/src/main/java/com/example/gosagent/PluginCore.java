@@ -14,16 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PluginCore {
-    // переименовать на что-то более адекватное
-    public static ReadData readData = new ReadData();
-    public static List<LotData> dataList = new ArrayList<>();
-    public static int markerType = 0;
-    public static List<AllLotData> allLotData = new ArrayList<>();
-
+    public static ReadData DB = new ReadData();
+    public static List<MarkerData> Marker = new ArrayList<>();
+    public static int MarkerType = 0;
+    public static List<LotInformationsData> LotInformationData = new ArrayList<>();
+    public static ConfigsForDB ConfigsInformation = new ConfigsForDB();
 
     public static int getMarkerType() {
         int icon;
-        switch (markerType) {
+        switch (MarkerType) {
             case 1: icon = R.drawable.ic_museum; break;
             case 2: icon = R.drawable.ic_city_hall; break;
             case 3: icon = R.drawable.ic_hardware_store; break;
@@ -56,17 +55,26 @@ public class PluginCore {
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
-    public static void addLotData(int id, double coordinatesX, double coordinatesY){
-        LotData data = new LotData(id, coordinatesX, coordinatesY);
+    public static Drawable getIcon(Context context) {
+        int vectorResId = getMarkerType();
+        Drawable vectorDrawable = ContextCompat.getDrawable(context, vectorResId);
+        vectorDrawable.setBounds(0, 0, vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(), vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return  vectorDrawable;
+    }
 
-        dataList.add(data);
+    public static String getTableName() { return ConfigsInformation.tableName + PluginCore.MarkerType; }
+
+    public static void addLotData(int id, double coordinatesX, double coordinatesY){
+        Marker.add(new MarkerData(id, coordinatesX, coordinatesY));
     }
 
     public static void init() {
-        dataList.clear();
-        allLotData.clear();
-        readData = new ReadData();
+        Marker.clear();
+        LotInformationData.clear();
+        DB = new ReadData();
     }
-
 }
 

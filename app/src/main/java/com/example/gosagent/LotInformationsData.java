@@ -4,8 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AllLotData {
+public class LotInformationsData {
     public List<String> lotConfigs = new ArrayList<>();
+    public String numberLot;
+    public String linkLot;
+    public String locationLot;
+    public String initialPriceLot;
+    public String monthlyPaymentLot;
 
     public static List<String> getTeg() {
         List<String> allTeg = Arrays.asList(
@@ -28,10 +33,10 @@ public class AllLotData {
         return allTeg;
     }
 
-    public AllLotData(List<String> lotCongigs) {
-        this.lotConfigs.addAll(lotCongigs);
+    public LotInformationsData(List<String> lotConfigs) {
+        this.lotConfigs.addAll(lotConfigs);
     }
 
-    public AllLotData() { }
+    public LotInformationsData() { }
 
 }

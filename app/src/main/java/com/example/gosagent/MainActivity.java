@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,23 +56,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
-                    case R.id.type1: PluginCore.markerType = 1; break;
-                    case R.id.type2: PluginCore.markerType = 2; break;
-                    case R.id.type3: PluginCore.markerType = 3; break;
-                    case R.id.type4: PluginCore.markerType = 4; break;
-                    case R.id.type5: PluginCore.markerType = 5; break;
-                    case R.id.type6: PluginCore.markerType = 6; break;
-                    case R.id.type7: PluginCore.markerType = 7; break;
-                    case R.id.type8: PluginCore.markerType = 8; break;
-                    case R.id.type9: PluginCore.markerType = 9; break;
-                    case R.id.type10: PluginCore.markerType = 10; break;
-                    case R.id.type11: PluginCore.markerType = 11; break;
-                    case R.id.type12: PluginCore.markerType = 12; break;
-                    case R.id.type13: PluginCore.markerType = 13; break;
-                    case R.id.type14: PluginCore.markerType = 14; break;
-                    case R.id.type15: PluginCore.markerType = 15; break;
-                    case R.id.type16: PluginCore.markerType = 16; break;
-                    case R.id.type17: PluginCore.markerType = 17; break;
+                    case R.id.type1: PluginCore.MarkerType = 1; break;
+                    case R.id.type2: PluginCore.MarkerType = 2; break;
+                    case R.id.type3: PluginCore.MarkerType = 3; break;
+                    case R.id.type4: PluginCore.MarkerType = 4; break;
+                    case R.id.type5: PluginCore.MarkerType = 5; break;
+                    case R.id.type6: PluginCore.MarkerType = 6; break;
+                    case R.id.type7: PluginCore.MarkerType = 7; break;
+                    case R.id.type8: PluginCore.MarkerType = 8; break;
+                    case R.id.type9: PluginCore.MarkerType = 9; break;
+                    case R.id.type10: PluginCore.MarkerType = 10; break;
+                    case R.id.type11: PluginCore.MarkerType = 11; break;
+                    case R.id.type12: PluginCore.MarkerType = 12; break;
+                    case R.id.type13: PluginCore.MarkerType = 13; break;
+                    case R.id.type14: PluginCore.MarkerType = 14; break;
+                    case R.id.type15: PluginCore.MarkerType = 15; break;
+                    case R.id.type16: PluginCore.MarkerType = 16; break;
+                    case R.id.type17: PluginCore.MarkerType = 17; break;
                 }
                 Intent intent = new Intent(".MapsActivity");
                 startActivity(intent);

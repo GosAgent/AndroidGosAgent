@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 public class InformationPages {
     private Drawable imageLot;
     private String nameOfLot;
+    private String textLot;
     private String description;
     private String linkOnLot;
     private String priceLot;
@@ -24,6 +25,14 @@ public class InformationPages {
 
     public void setNameOfLot(String nameOfLot) {
         this.nameOfLot = nameOfLot;
+    }
+
+    public String getTextLot() {
+        return textLot;
+    }
+
+    public void setTextLot(String textLot) {
+        this.textLot = textLot;
     }
 
     public String getAddresses() { return addressesLot; }

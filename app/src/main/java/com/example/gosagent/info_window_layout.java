@@ -35,10 +35,13 @@ public class info_window_layout extends AppCompatActivity {
 
     private void setupAdapterInfoWind() {
         List<InformationPages> elements = new ArrayList<>();
+        int nameLot = 1;
+        int countLot = PluginCore.LotInformationData.size();
 
         for (LotInformationsData lot : PluginCore.LotInformationData) {
             InformationPages item = new InformationPages();
 
+            item.setTextLot("Лот " + nameLot + "/" + countLot);
             item.setNameOfLot(lot.numberLot);
             item.setImage(PluginCore.getIcon(this));
             item.setAddresses(lot.locationLot);
@@ -53,6 +56,7 @@ public class info_window_layout extends AppCompatActivity {
             item.setDescription(description.toString().trim());
 
             elements.add(item);
+            nameLot++;
         }
 
         adapterInfoWindow = new AdapterInfoWindow(elements);

@@ -45,6 +45,7 @@ public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.Pa
 
         private final ImageView imageView;
         private final TextView textNumber;
+        private final TextView textLot;
         private final TextView textDescription;
         private final TextView link;
         private final TextView textAddresses;
@@ -56,6 +57,7 @@ public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.Pa
             link = itemView.findViewById(R.id.textLink);
             imageView = itemView.findViewById(R.id.imageType);
             textNumber = itemView.findViewById(R.id.textNumber);
+            textLot = itemView.findViewById(R.id.textLot);
             textDescription = itemView.findViewById(R.id.textDescription);
             textAddresses = itemView.findViewById(R.id.textAdress);
             textPrice = itemView.findViewById(R.id.textPrice);
@@ -64,6 +66,7 @@ public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.Pa
         void setOnPageInformation(InformationPages information) {
             imageView.setBackground(information.getImage());
             textNumber.setText(information.getNameOfLot());
+            textLot.setText(information.getTextLot());
             textDescription.setText(information.getDescription());
             textAddresses.setText(information.getAddresses());
             textPrice.setText(information.getPrice());

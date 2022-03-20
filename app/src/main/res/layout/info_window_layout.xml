@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> <!-- New fragment_info_window_layout.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -42,15 +42,14 @@
                     android:id="@+id/imageType"
                     android:layout_width="55sp"
                     android:layout_height="55sp"
+                    android:layout_centerInParent="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
+                    android:background="@drawable/ic_airport"
+                    android:foregroundGravity="center_vertical"
                     android:paddingStart="15dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/ic_airport"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:layout_centerInParent="true"
                     tools:ignore="RtlSymmetry" />
 
             </RelativeLayout>
@@ -62,7 +61,7 @@
                 android:layout_toEndOf="@+id/icon">
 
                 <TextView
-                    android:id="@+id/textNumber"
+                    android:id="@+id/textLot"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
@@ -71,16 +70,17 @@
                     android:background="@drawable/rounded_corner_view"
                     android:paddingStart="15dp"
                     android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                     android:textStyle="bold"
                     tools:ignore="RtlSymmetry" />
+
             </RelativeLayout>
 
         </RelativeLayout>
         <androidx.fragment.app.FragmentContainerView
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="13dp"
             android:background="@color/black">
 
         </androidx.fragment.app.FragmentContainerView>
@@ -89,6 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginVertical="10dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/square_rounded">
@@ -106,11 +107,41 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="15sp"
+            android:layout_marginEnd="15sp"
+            android:background="@drawable/square_rounded">
+
+            <TextView
+                android:id="@+id/default_activity_button15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
+                android:text="@string/lot"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="37sp"
+                android:layout_toEndOf="@+id/default_activity_button15"
+                android:gravity="center_vertical"
+                android:isScrollContainer="true"
+                android:paddingVertical="5dp"
+                android:paddingStart="15dp"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                tools:ignore="RtlSymmetry" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/square_rounded">
-
 
             <TextView
                 android:id="@+id/default_activity_button"
@@ -118,6 +149,7 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="5dp"
+                android:gravity="center_vertical"
                 android:text="@string/Adress"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textSize="16sp" />
@@ -126,8 +158,9 @@
                 android:id="@+id/textAdress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="18sp"
                 android:layout_toEndOf="@+id/default_activity_button"
+                android:gravity="center_vertical"
                 android:isScrollContainer="true"
                 android:paddingVertical="5dp"
                 android:paddingStart="15dp"
@@ -148,20 +181,20 @@
                 android:id="@+id/default_activity_button12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:paddingHorizontal="5dp"
                 android:paddingVertical="5dp"
                 android:text="@string/price"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textSize="16sp" />
 
-            <!-- @+id/цена -->
             <TextView
                 android:id="@+id/textPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
+                android:layout_marginStart="26sp"
                 android:layout_toEndOf="@+id/default_activity_button12"
-                android:gravity="center"
+                android:gravity="center_vertical"
                 android:isScrollContainer="true"
                 android:paddingVertical="5dp"
                 android:paddingStart="15dp"
@@ -174,28 +207,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="5dp"
+            android:layout_margin="10dp"
             android:paddingVertical="2dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/square_rounded">
-
 
             <TextView
                 android:id="@+id/textLink"
                 style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/common_google_signin_btn_text_light_disabled"
+                android:backgroundTint="@color/material_on_background_disabled"
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                 android:gravity="center"
-                app:cornerRadius="5dp" />
+                app:cornerRadius="5sp"/>
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_height="match_parent">
 
             <!--На счет добавления карты нужно подумать, пока не вижу необходимости -->
             <!--        <com.google.android.gms.maps.MapView-->
@@ -213,8 +245,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginVertical="10sp"
                 android:text="@string/select"
                 app:cornerRadius="10dp" />
 

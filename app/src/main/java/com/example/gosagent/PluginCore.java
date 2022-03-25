@@ -19,6 +19,7 @@ public class PluginCore {
     public static int MarkerType = 0;
     public static List<LotInformationsData> LotInformationData = new ArrayList<>();
     public static ConfigsForDB ConfigsInformation = new ConfigsForDB();
+    public static List<LotInformationsData> FavoritesLot = new ArrayList<>();
 
     public static int getMarkerType() {
         int icon;
@@ -72,6 +73,7 @@ public class PluginCore {
     }
 
     public static void init() {
+        FavoritesLot.clear();
         Marker.clear();
         LotInformationData.clear();
         DB = new ReadData();

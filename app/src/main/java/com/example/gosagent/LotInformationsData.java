@@ -39,4 +39,13 @@ public class LotInformationsData {
 
     public LotInformationsData() { }
 
+    public LotInformationsData(String numberLot, String linkLot,String locationLot,String initialPriceLot,String monthlyPaymentLot, List<String> lotConfigs) {
+        this.numberLot = numberLot;
+        this.linkLot = linkLot;
+        this.locationLot = locationLot;
+        this.initialPriceLot= initialPriceLot;
+        this.monthlyPaymentLot = monthlyPaymentLot;
+        this.lotConfigs.addAll(lotConfigs);
+    }
+
 }

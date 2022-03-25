@@ -6,12 +6,14 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gosagent.PluginCore;
 import com.example.gosagent.R;
 
 import java.util.List;
@@ -42,7 +44,7 @@ public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.Pa
     }
 
     static class PageHolder extends RecyclerView.ViewHolder {
-
+        private final Button searchButton;
         private final ImageView imageView;
         private final TextView textNumber;
         private final TextView textLot;
@@ -54,6 +56,7 @@ public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.Pa
         @SuppressLint("CutPasteId")
         PageHolder(@NonNull View itemView) {
             super(itemView);
+            searchButton = itemView.findViewById(R.id.search_button);
             link = itemView.findViewById(R.id.textLink);
             imageView = itemView.findViewById(R.id.imageType);
             textNumber = itemView.findViewById(R.id.textNumber);
@@ -70,6 +73,13 @@ public class AdapterInfoWindow extends RecyclerView.Adapter<AdapterInfoWindow.Pa
             textDescription.setText(information.getDescription());
             textAddresses.setText(information.getAddresses());
             textPrice.setText(information.getPrice());
+
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PluginCore.FavoritesLot.add(information.getSelectedLot());
+                }
+            });
 
             String linkText = "<a href=\"" + information.getLink() + "\">Подробнее</a>";
             link.setText(Html.fromHtml(linkText, null, null));

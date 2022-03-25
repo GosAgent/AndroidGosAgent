@@ -47,6 +47,7 @@ public class info_window_layout extends AppCompatActivity {
             item.setAddresses(lot.locationLot);
             item.setPrice(lot.initialPriceLot);
             item.setLink(lot.linkLot);
+            item.setSelectedLot(lot);
 
             StringBuilder description = new StringBuilder();
             for (String information : lot.lotConfigs) {
@@ -67,10 +68,10 @@ public class info_window_layout extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        for (int i=0; i < indicators.length; i++) {
-            indicators[i] = new ImageView(getApplicationContext());
-            indicators[i].setLayoutParams(layoutParams);
-            linearLayout.addView(indicators[i]);
+        for (int index = 0; index < indicators.length; index++) {
+            indicators[index] = new ImageView(getApplicationContext());
+            indicators[index].setLayoutParams(layoutParams);
+            linearLayout.addView(indicators[index]);
         }
     }
     // как-то подозрительно

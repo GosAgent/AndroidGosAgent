@@ -2,7 +2,10 @@ package com.example.gosagent.ui.main;
 
 import android.graphics.drawable.Drawable;
 
+import com.example.gosagent.LotInformationsData;
+
 public class InformationPages {
+    private LotInformationsData selectedLot;
     private Drawable imageLot;
     private String nameOfLot;
     private String textLot;
@@ -35,6 +38,12 @@ public class InformationPages {
         this.textLot = textLot;
     }
 
+    public LotInformationsData getSelectedLot() { return selectedLot; }
+
+    public void setSelectedLot(LotInformationsData selectedLot) {
+        this.selectedLot = selectedLot;
+    }
+
     public String getAddresses() { return addressesLot; }
 
     public void setAddresses(String addresses) {
@@ -57,11 +66,7 @@ public class InformationPages {
         this.linkOnLot = link;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 }

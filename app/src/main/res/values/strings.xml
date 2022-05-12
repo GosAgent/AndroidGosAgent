@@ -50,4 +50,5 @@
     <string name="more">подробнее</string>
     <string name="select">выбрать</string>
     <string name="lot">Лот:</string>
+    <string name="cityDefault">Введите город</string>
 </resources>

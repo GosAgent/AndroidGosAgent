@@ -66,8 +66,16 @@
         <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/drawable/line_block.xml" value="0.2425" />
         <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/drawable/rounded_corner_view.xml" value="0.2425" />
         <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/drawable/square_rounded.xml" value="0.1265" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/activity_main (1).xml" value="0.2" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/activity_main.xml" value="0.1671875" />
         <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/activity_main_info_window_layout.xml" value="0.2359375" />
-        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/info_window_layout.xml" value="0.536" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/activity_maps.xml" value="0.2888146911519199" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/activity_small.xml" value="0.1671875" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/icon_price.xml" value="0.1671875" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/icon_test.xml" value="0.1671875" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/info_window_layout.xml" value="0.44583333333333336" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/layout/searchable.xml" value="0.4" />
+        <entry key="..\:/Users/novor/Desktop/AndroidGosAgent/app/src/main/res/menu/menu_toolbar_reader.xml" value="0.25833333333333336" />
       </map>
     </option>
   </component>
